@@ -1,1 +1,16 @@
-<h1 style="color:black;">Welcome to Video Tube</h1>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+{{block.super}}
+
+<div class="container-fluid">
+    
+    <div>  
+    <h1 style="text-align:right; color:darkgrey; font-size: 16px; padding-right: 20px;">{{date|date:"l d-F Y"}}</h1>
+    <hr>             
+        <h4>Welcome to Video Tube</h4>    
+    </div>
+</div>
+
+{% endblock %}
