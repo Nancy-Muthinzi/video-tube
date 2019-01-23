@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "navbar.html" %}
+
+<div class="container">
+    {% if videos %}
+    <h4>Found {{ videos|length }} of searched term {{message}}</h4>
+    {% else %}
+    <h4> Found 0 videos for the search term {{message}}</h4>
+    {% endif %}
+
+<div class="row">
+    {% if videos %}
+    {% for video in videos %}
+    <div class="col-sm-6 col-md-3">
+        <h4>{{video.title}}</h4>
+    {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+</div>
+{% endblock %}

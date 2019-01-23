@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Profile, Merchant, Video
+from .models import Merchant, Video
 
 # Register your models here.
-admin.site.register(Profile)
 admin.site.register(Merchant)
 admin.site.register(Video)
+
