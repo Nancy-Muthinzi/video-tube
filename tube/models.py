@@ -24,9 +24,15 @@ class Profile(models.Model):
         ordering = ['first_name', 'last_name']
 
 
+class Merchant(models.Model):
+    first_name = models.CharField(max_length = 25)
+    last_name = models.CharField(max_length = 25)
+    email = models.EmailField()
+    
 class Video(models.Model):
     title = models.CharField(max_length = 50)
     link = models.URLField()
 
     def __str__(self):
         return self.link   
+
