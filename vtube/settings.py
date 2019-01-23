@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'vtube.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'template1',
+        'NAME': 'vtube',
         'USER': 'macpro',
         'PASSWORD':' ',
     }
