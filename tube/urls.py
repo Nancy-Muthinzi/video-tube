@@ -7,6 +7,7 @@ urlpatterns = [
     url('^$',views.welcome, name = 'welcome'),
     url('^today/$',views.welcome,name='siteToday'),
     url('^search/$',views.search_results,name='search_results'),
-
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
