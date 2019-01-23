@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime as dt 
+from .forms import NewVideoForm
 
 # Create your views here.
 def welcome(request):
@@ -17,6 +18,21 @@ def video(request, video_id):
             raise Http404()
             
         return render(request, "video.html", {"video":video})
+
+@login_required(login_url='/accounts/login/')
+def new_video(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewVideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            video = form.save(commit=False)
+            video.merchant = current_user
+            video.save()
+        return redirect('welcome')
+
+    else:
+        form = NewVideoForm()
+    return render(request, 'new_video.html', {"form": form})        
 
 def search_results(request):
     if 'video' in request.GET and request.GET["video"]:

@@ -26,7 +26,7 @@
 
       <div class="col-sm-6 col-md-6">
         {% if user.is_authenticated %}
-        <ul>
+        <ul style="list-style-type:none;">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
                       <span class="caret"></span>
@@ -34,6 +34,9 @@
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="{%url 'welcome'%}">Home</a>
+              </li>
+              <li>
+                <a href="{%url 'new-video'%}">Add Video</a>
               </li>
               <li>
                 <a href="/accounts/password/change">Change Password</a>
