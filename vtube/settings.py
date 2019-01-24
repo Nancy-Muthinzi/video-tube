@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'tube.apps.TubeConfig',
     'bootstrap4',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

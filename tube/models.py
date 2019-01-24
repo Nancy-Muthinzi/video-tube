@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import datetime as dt 
 
 # Create your models here.
+
 class Video(models.Model):
     title = models.CharField(max_length = 50)            
     link = models.URLField()
@@ -27,5 +28,4 @@ class VtubeMerch(models.Model):
     name = models.CharField(max_length = 50)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
-    
-          
+
