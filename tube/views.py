@@ -2,12 +2,15 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime as dt 
+from .models import Video
 from .forms import NewVideoForm
 
 # Create your views here.
-def welcome(request):
+def index(request):
     date = dt.date.today()
-    return render(request, 'welcome.html', {"date":date})
+    videos = Video.objects.all()
+
+    return render(request, 'index.html', {"date":date, "videos":videos})
 
 @login_required(login_url='/accounts/login/')
 def video(request, video_id):
@@ -28,7 +31,7 @@ def new_video(request):
             video = form.save(commit=False)
             video.merchant = current_user
             video.save()
-        return redirect('welcome')
+        return redirect('index')
 
     else:
         form = NewVideoForm()
