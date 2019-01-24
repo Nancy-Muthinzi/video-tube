@@ -5,6 +5,11 @@ import datetime as dt
 from .models import Video
 from .forms import NewVideoForm
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import VtubeMerch
+from .serializer import MerchSerielizer
+
 # Create your views here.
 def index(request):
     date = dt.date.today()
@@ -48,3 +53,10 @@ def search_results(request):
     else:
         message = "You haven't made any searches"
         return render(request, 'search.html', {"message": message})
+
+class Merchlist(APIView):
+    def get(self, request, format=None):
+        all_merch = VtubeMerch.objects.all()
+        serializers = MerchSerializer(all_merch, many=True)  
+        return Response(serializers.data)
+          

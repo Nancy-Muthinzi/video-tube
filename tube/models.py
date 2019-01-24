@@ -6,7 +6,7 @@ import datetime as dt
 class Video(models.Model):
     title = models.CharField(max_length = 50)            
     link = models.URLField()
-    post = models.TextField()
+    description = models.TextField()
     merchant = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save_video(self):
@@ -21,4 +21,11 @@ class Video(models.Model):
         return videos
 
     def __str__(self):
-        return self.title    
+        return self.title  
+
+class VtubeMerch(models.Model):
+    name = models.CharField(max_length = 50)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=10)
+    
+          
