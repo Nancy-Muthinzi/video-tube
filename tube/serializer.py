@@ -4,5 +4,5 @@ from .models import VtubeMerch
 class MerchSerielizer(serializers.ModelSerializer):
     class Meta:
         model = VtubeMerch
-        fields = ('name', 'description', 'price')
+        fields = ('id', 'name', 'description', 'price')
         
