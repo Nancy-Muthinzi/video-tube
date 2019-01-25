@@ -11,6 +11,8 @@ from rest_framework import status
 from .models import VtubeMerch
 from .serializer import MerchSerielizer
 
+from .permissions import IsAdminOrReadOnly
+
 # Create your views here.
 def index(request):
     date = dt.date.today()
@@ -63,6 +65,7 @@ class Merchlist(APIView):
 
     def post(self, request, format=None):
         serializers = MerchSerializer(data = request.data)
+        permission_classes = (IsAdminOrReadOnly)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
