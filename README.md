@@ -17,12 +17,13 @@ finally do a ./manage.py runserver to be able to run it on your browser
 Here's a link to the deployed site on Heroku - https://nknkm-video-tube.herokuapp.com/
 
 ## Technologies used
-* Python 3.6.5
-* Django 1.11.5
-* HTML
-* CSS & Bootstrap4
+* Python 3.6.5: the language used
+* Django 1.11.5: as a python framework
+* HTML: for creating the website structure
+* CSS & Bootstrap4: for styling purposes
+* RESTful API: to provide users a way to acess to data from the website. I used Django Rest Framework.
 
-Known Bugs, Support & Contact Information
+## Known Bugs, Support & Contact Information
 This is still a work in progress and will continue to be worked on. But for any issues encountered and any contributions to the code or design, kindly reach out to me on my email address: nanciekathini@gmail.com.
 
 Authors
