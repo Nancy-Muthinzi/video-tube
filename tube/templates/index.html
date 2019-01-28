@@ -4,34 +4,26 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">    
+<div class="container-fluid">    
+    <p>Click to add a new video</p>
+    <button type="button" class="btn btn-outline-primary" role="button">
+    <a href="{%url 'new-video'%}">Add Video</a></button>
+    <hr>
 
-    <!-- <a href="{%url 'new-video'%}">Add Video</a> -->
-      
     <!-- Looping through videos   -->
-    {% for video in videos %}
+    <h4>My Videos</h4> <br>
+
+    {% for post in video %}
 
         <!-- displaying videos -->
-        {{ video.title }}
-        {{ video.videofile.cdn_url }}
-        {{ video.description }}
+        <h4>{{ post.title }}</h4> <br>
+        <video width='600' controls>
+                <source src='{{ MEDIA_URL }}{{ post.videofile }}' type='video/mp4'>
+                    Your browser does not support the video tag.
+                    {{ post.videofile }}</video> <br>
+        <p>{{ post.description }}</p> <br>
 
     {% endfor %}    
-    
-    <h1>Video Uploader</h1>
-    <form enctype="multipart/form-data" method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Upload"/>
-    </form>
-    
-    <br><br>
-    <video width='400' controls>
-    <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
-    Your browser does not support the video tag.
-    </video>
-    <br><br>
-    </p>
 
 </div>
 {% endblock %}

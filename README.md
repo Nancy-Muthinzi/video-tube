@@ -1,7 +1,7 @@
 # VIDEO TUBE
 This is a website that allows users to view and upload videos on the site.
 
-A user of the applocations will be able to:
+A user of the application will be able to:
 * Log in/log out of the site
 * View posted videos on the site
 * Post videos on the site
@@ -26,8 +26,8 @@ Here's a link to the deployed site on Heroku - https://nknkm-video-tube.herokuap
 ## Known Bugs, Support & Contact Information
 This is still a work in progress and will continue to be worked on. But for any issues encountered and any contributions to the code or design, kindly reach out to me on my email address: nanciekathini@gmail.com.
 
-Authors
+## Authors
 Nancy Muthinzi
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE.md file for details

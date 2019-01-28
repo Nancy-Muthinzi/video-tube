@@ -18,22 +18,23 @@ from .permissions import IsAdminOrReadOnly
 
 # Create your views here.
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def index(request):
     date = dt.date.today()
+    videos = Video.objects.all()
 
-    lastvideo= Video.objects.last()
-    videofile= lastvideo.videofile
+    # lastvideo= Video.objects.last()
+    # videofile= lastvideo.videofile
 
-    form= NewVideoForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
+    # form= NewVideoForm(request.POST or None, request.FILES or None)
+    # if form.is_valid():
+    #     form.save()
     
-    context = {'videofile':videofile, 'form':form}
+    # context = {'videofile':videofile, 'form':form}
 
-    return render(request, 'index.html', context, {"date":date, "profile":profile, "video":video})
+    return render(request, 'index.html', {"date":date, "profile":profile, "video":videos})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def profile(request, id):
     current_user = request.user
     profile = Profile.objects.get(user=current_user.id)
@@ -41,7 +42,7 @@ def profile(request, id):
 
     return render(request, 'profile.html', {"profile": profile, "videos":video})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def video(request,vid=None):
     if vid is None:
         return HttpResponse("No Video")
@@ -57,7 +58,7 @@ def video(request,vid=None):
 
     return render(request, "video.html", {"url":video_url})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def new_video(request):
     current_user = request.user
     if request.method == 'POST':
