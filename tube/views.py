@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import datetime as dt 
 from .models import *
+from django.db.models import F
 from .forms import *
 
 from rest_framework.response import Response
@@ -22,17 +23,9 @@ from .permissions import IsAdminOrReadOnly
 def index(request):
     date = dt.date.today()
     videos = Video.objects.all()
+    comments = Comment.objects.all()
 
-    # lastvideo= Video.objects.last()
-    # videofile= lastvideo.videofile
-
-    # form= NewVideoForm(request.POST or None, request.FILES or None)
-    # if form.is_valid():
-    #     form.save()
-    
-    # context = {'videofile':videofile, 'form':form}
-
-    return render(request, 'index.html', {"date":date, "profile":profile, "video":videos})
+    return render(request, 'index.html', {"date":date, "profile":profile, "video":videos, "comment":comments})
 
 @login_required(login_url='/accounts/login/')
 def profile(request, id):

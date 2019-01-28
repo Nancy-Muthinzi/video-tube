@@ -8,7 +8,7 @@ class NewVideoForm(forms.ModelForm):
         model = Video
         fields = ['title', 'videofile']
 
-class PostForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Comment
         exclude = ['video']

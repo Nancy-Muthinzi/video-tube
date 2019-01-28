@@ -17,11 +17,14 @@
 
         <!-- displaying videos -->
         <h4>{{ post.title }}</h4> <br>
-        <video width='600' controls>
+        <video width='800' controls>
                 <source src='{{ MEDIA_URL }}{{ post.videofile }}' type='video/mp4'>
                     Your browser does not support the video tag.
                     {{ post.videofile }}</video> <br>
-        <p>{{ post.description }}</p> <br>
+        <p>Description: {{ post.description }}</p>
+        <p>Posted by: {{ post.merchant }}</p> 
+        
+        <hr>
 
     {% endfor %}    
 

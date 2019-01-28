@@ -48,6 +48,7 @@ class Video(models.Model):
     link = models.URLField(blank=True)
     description = models.TextField()
     merchant = models.ForeignKey(User, on_delete=models.CASCADE)
+    views=models.IntegerField(default=0)
 
     def save_video(self):
         self.save
@@ -63,10 +64,10 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
-class Post(models.Model):
+class Comment(models.Model):
     user = models.ForeignKey(Profile, related_name='profile')
-    post = models.CharField(max_length = 150)
-    video = models.ForeignKey(Video, related_name='posts')        
+    comment = models.CharField(max_length = 150)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)        
 
 class VtubeInfo(models.Model):
     name = models.CharField(max_length = 50)
