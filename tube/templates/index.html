@@ -4,22 +4,34 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">
-    <h4 class="text-center">My Video Items</h4>
+<div class="container">    
 
+    <!-- <a href="{%url 'new-video'%}">Add Video</a> -->
+      
     <!-- Looping through videos   -->
-    {% for post in videos %}
+    {% for video in videos %}
 
-    <div class="row">
         <!-- displaying videos -->
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h6 class="text-center"> {{ post.title }} </h6>
-            <section>
-                {{ post.link }} <br>
-                {{ post.merchant}}
-            </section>
-        </div>
-    </div>
-    {% endfor %}
+        {{ video.title }}
+        {{ video.videofile.cdn_url }}
+        {{ video.description }}
+
+    {% endfor %}    
+    
+    <h1>Video Uploader</h1>
+    <form enctype="multipart/form-data" method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Upload"/>
+    </form>
+    
+    <br><br>
+    <video width='400' controls>
+    <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
+    Your browser does not support the video tag.
+    </video>
+    <br><br>
+    </p>
+
 </div>
 {% endblock %}

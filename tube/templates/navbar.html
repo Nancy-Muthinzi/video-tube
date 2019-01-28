@@ -7,36 +7,38 @@
 </head>
 <body>
     <!-- Image/text -->
-<nav class="navbar navbar-light bg-light"> 
+<nav class="navbar navbar-custom navbar-inverse navbar-static-top" style="background-color:lightskyblue;"> 
     <a class="navbar-brand" href="{% url 'index' %}">
       <img src="/static/images/vt.jpg" width="100" height="100" class="d-inline-block align-top" alt="">
     </a>
 
-    <!-- searchbar -->
-    <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+    <!-- Adding a search form  -->
+    <div class="col-sm-4 col-md-4 navbar-right">
 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search..." name="username">
-          <div class="input-group-btn">
-            <button class="btn btn-dark" type="submit"><i class="glyphicon glyphicon-search"></button>
-          </div>
-        </div>
-      </form>
+        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search ..." name="videos">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!-- search form end -->
 
       <!-- user account -->
-      <div class="col-sm-6 col-md-6">
+      <div>
         {% if user.is_authenticated %}
         <ul style="list-style-type:none;">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"> Account
                       <span class="caret"></span>
                   </a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="{%url 'index'%}">Home</a>
-              </li>
-              <li>
-                <a href="{%url 'new-video'%}">Add Video</a>
+                <a href="{url 'profile' user.id %}">Profile {{ User }}</a>
               </li>
               <li>
                 <a href="/accounts/password/change">Change Password</a>

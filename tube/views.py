@@ -1,9 +1,12 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.conf import settings
+from django.shortcuts import render,redirect, get_object_or_404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+
 import datetime as dt 
-from .models import Video
-from .forms import NewVideoForm
+from .models import *
+from .forms import *
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -14,23 +17,47 @@ from .serializer import MerchSerielizer
 from .permissions import IsAdminOrReadOnly
 
 # Create your views here.
+
+# @login_required(login_url='/accounts/login/')
 def index(request):
     date = dt.date.today()
-    videos = Video.objects.all()
 
-    return render(request, 'index.html', {"date":date, "videos":videos})
+    lastvideo= Video.objects.last()
+    videofile= lastvideo.videofile
 
-@login_required(login_url='/accounts/login/')
-def video(request, video_id):
-        try:
-            video = Video.objects.get(id = video_id)
+    form= NewVideoForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
     
-        except DoesNotExist:
-            raise Http404()
-            
-        return render(request, "video.html", {"video":video})
+    context = {'videofile':videofile, 'form':form}
 
-@login_required(login_url='/accounts/login/')
+    return render(request, 'index.html', context, {"date":date, "profile":profile, "video":video})
+
+# @login_required(login_url='/accounts/login/')
+def profile(request, id):
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user.id)
+    video = Video.objects.all()
+
+    return render(request, 'profile.html', {"profile": profile, "videos":video})
+
+# @login_required(login_url='/accounts/login/')
+def video(request,vid=None):
+    if vid is None:
+        return HttpResponse("No Video")
+
+    try:
+        video_object = get_object_or_404(videos, pk = vid)
+    except videos.DoesNotExist:
+        return HttpResponse("Id doesn't exists.")
+
+    file_name = video_object.file_name
+    #getting full url - 
+    video_url = settings.MEDIA_URL+file_name
+
+    return render(request, "video.html", {"url":video_url})
+
+# @login_required(login_url='/accounts/login/')
 def new_video(request):
     current_user = request.user
     if request.method == 'POST':

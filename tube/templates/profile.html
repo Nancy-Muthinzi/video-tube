@@ -1,0 +1,16 @@
+
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container-fluid">
+        <img src="{{profile.profile_pic.url}}" width="200" style="padding-top:20px;">
+        <h4>{{profile.first_name}} {{profile.last_name}}</h4>
+        <p>{{profile.bio}}</p>
+        <p>{{profile.email}}</p>    
+
+ <h4>My Videos</h4>
+
+
+</div>
