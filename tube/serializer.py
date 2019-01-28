@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import VtubeMerch
+from .models import VtubeInfo
 
-class MerchSerielizer(serializers.ModelSerializer):
+class InfoSerielizer(serializers.ModelSerializer):
     class Meta:
-        model = VtubeMerch
-        fields = ('id', 'name', 'description', 'price')
+        model = VtubeInfo
+        fields = ('id', 'name', 'description')
         

@@ -10,9 +10,9 @@ urlpatterns = [
     url(r'^search/$',views.search_results,name='search_results'),
     url(r'^video/(?P<vid>\w+)/$',views.video),
     url(r'^new/video$', views.new_video, name='new-video'),
-    url(r'^api/merch/$', views.Merchlist.as_view()),
-    url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',
-        views.MerchDescription.as_view())    
+    url(r'^api/info/$', views.Infolist.as_view()),
+    url(r'api/info/info-id/(?P<pk>[0-9]+)/$',
+        views.InfoDescription.as_view())    
 ]
 
 if settings.DEBUG:

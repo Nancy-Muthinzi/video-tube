@@ -1,4 +1,4 @@
-#VIDEO TUBE
+# VIDEO TUBE
 This is a website that allows users to view and upload videos on the site.
 
 A user of the applocations will be able to:
@@ -30,7 +30,3 @@ Nancy Muthinzi
 
 License
 This project is licensed under the MIT License - see the LICENSE.md file for details
-
-Acknowledgments/Credits
-Hat tip to Moringa School staff, technical mentors and fellow students for their support and guidance
-StackOverflow, W3Schools, Codepen and other websites for their documentation and useful information
